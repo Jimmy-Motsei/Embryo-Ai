@@ -1,0 +1,242 @@
+/* MaruOnline Brand Colors */
+:root {
+    --maru-heading: #4A5A63;  /* Slate grey for H1/headings */
+    --maru-accent: #78B2BE;    /* Teal for accents/links */
+    --maru-text: #333333;      /* Dark grey for body text */
+    --maru-light: #F8F9FA;     /* Light background */
+    --maru-border: #E9ECEF;    /* Light border */
+}
+
+/* Override Reveal.js theme */
+.reveal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.45;
+}
+
+/* Headings */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    color: var(--maru-heading);
+    font-weight: 600;
+    text-transform: none;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+.reveal h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.3em;
+}
+
+.reveal h2 {
+    font-size: 2em;
+    color: var(--maru-heading);
+    border-bottom: 2px solid var(--maru-accent);
+    padding-bottom: 0.2em;
+    margin-bottom: 0.8em;
+}
+
+.reveal h3 {
+    font-size: 1.5em;
+    color: var(--maru-accent);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+/* Links and accents */
+.reveal a {
+    color: var(--maru-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.reveal a:hover {
+    color: var(--maru-heading);
+    text-decoration: underline;
+}
+
+/* Bullet points */
+.reveal ul li,
+.reveal ol li {
+    color: var(--maru-text);
+    margin-bottom: 0.4em;
+    line-height: 1.4;
+}
+
+.reveal ul li::marker {
+    color: var(--maru-accent);
+}
+
+/* Strong text */
+.reveal strong {
+    color: var(--maru-heading);
+    font-weight: 600;
+}
+
+/* Code blocks */
+.reveal code {
+    background-color: var(--maru-light);
+    color: var(--maru-heading);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.reveal pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Slide content */
+.reveal .slides section {
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+/* Title slide */
+.reveal .slides section:first-child {
+    text-align: center;
+}
+
+.reveal .slides section:first-child h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    color: var(--maru-heading);
+}
+
+.reveal .slides section:first-child h2 {
+    font-size: 1.5em;
+    color: var(--maru-accent);
+    border: none;
+    margin-bottom: 1em;
+}
+
+.reveal .slides section:first-child p {
+    font-size: 1.1em;
+    color: var(--maru-text);
+    margin-bottom: 0.5em;
+}
+
+/* Progress bar */
+.reveal .progress span {
+    background: var(--maru-accent);
+}
+
+/* Controls */
+.reveal .controls {
+    color: var(--maru-accent);
+}
+
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-down {
+    color: var(--maru-accent);
+}
+
+/* Blockquotes */
+.reveal blockquote {
+    border-left: 4px solid var(--maru-accent);
+    background-color: var(--maru-light);
+    padding: 1em;
+    margin: 1em 0;
+    font-style: italic;
+    color: var(--maru-text);
+}
+
+/* Tables */
+.reveal table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.reveal table th,
+.reveal table td {
+    border: 1px solid var(--maru-border);
+    padding: 0.5em;
+    text-align: left;
+}
+
+.reveal table th {
+    background-color: var(--maru-accent);
+    color: white;
+    font-weight: 600;
+}
+
+.reveal table tr:nth-child(even) {
+    background-color: var(--maru-light);
+}
+
+/* Print styles */
+@media print {
+    .reveal .slides section {
+        page-break-inside: avoid;
+        max-width: none;
+        padding: 0;
+    }
+    
+    .reveal h1,
+    .reveal h2,
+    .reveal h3 {
+        color: var(--maru-heading) !important;
+    }
+    
+    .reveal a {
+        color: var(--maru-accent) !important;
+    }
+    
+    .reveal .progress,
+    .reveal .controls {
+        display: none;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .reveal .slides section {
+        padding: 0 1em;
+        max-width: 100%;
+    }
+    
+    .reveal h1 {
+        font-size: 2em;
+    }
+    
+    .reveal h2 {
+        font-size: 1.5em;
+    }
+    
+    .reveal .slides section:first-child h1 {
+        font-size: 2.5em;
+    }
+}
+
+/* Custom slide-specific styles */
+.reveal .slides section[data-markdown] {
+    font-size: 0.9em;
+}
+
+/* Ensure good contrast for accessibility */
+.reveal .slides section {
+    color: var(--maru-text);
+}
+
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3 {
+    text-shadow: none;
+}
+
+/* Focus styles for accessibility */
+.reveal a:focus,
+.reveal button:focus {
+    outline: 2px solid var(--maru-accent);
+    outline-offset: 2px;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embryo-AI Website Audit - MaruOnline</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Reveal.js Markdown plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.min.js"></script>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides" data-markdown>
+            <textarea data-template>
+                {{ slides }}
+            </textarea>
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script>
+        // Load slides from slides.md
+        fetch('slides.md')
+            .then(response => response.text())
+            .then(data => {
+                // Replace the placeholder with actual slides
+                document.querySelector('[data-template]').innerHTML = data;
+                
+                // Initialize Reveal.js
+                Reveal.initialize({
+                    hash: true,
+                    transition: 'slide',
+                    transitionSpeed: 'default',
+                    backgroundTransition: 'fade',
+                    controls: true,
+                    progress: true,
+                    center: true,
+                    touch: true,
+                    loop: false,
+                    rtl: false,
+                    navigationMode: 'default',
+                    shuffle: false,
+                    fragments: true,
+                    fragmentInURL: false,
+                    embedded: false,
+                    help: true,
+                    showNotes: false,
+                    autoPlayMedia: null,
+                    preloadIframes: null,
+                    autoSlide: 0,
+                    autoSlideStoppable: true,
+                    autoSlideMethod: null,
+                    defaultTiming: null,
+                    mouseWheel: false,
+                    previewLinks: false,
+                    postMessage: true,
+                    postMessageEvents: false,
+                    focusBodyOnPageVisibilityChange: true,
+                    width: 1280,
+                    height: 720,
+                    margin: 0.04,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    disableLayout: false,
+                    pdfSeparateFragments: false,
+                    plugins: [ RevealMarkdown, RevealNotes, RevealHighlight ]
+                });
+            })
+            .catch(error => {
+                console.error('Error loading slides:', error);
+                // Fallback: initialize with empty content
+                Reveal.initialize({
+                    hash: true,
+                    transition: 'slide',
+                    transitionSpeed: 'default',
+                    backgroundTransition: 'fade',
+                    controls: true,
+                    progress: true,
+                    center: true,
+                    touch: true,
+                    loop: false,
+                    rtl: false,
+                    navigationMode: 'default',
+                    shuffle: false,
+                    fragments: true,
+                    fragmentInURL: false,
+                    embedded: false,
+                    help: true,
+                    showNotes: false,
+                    autoPlayMedia: null,
+                    preloadIframes: null,
+                    autoSlide: 0,
+                    autoSlideStoppable: true,
+                    autoSlideMethod: null,
+                    defaultTiming: null,
+                    mouseWheel: false,
+                    previewLinks: false,
+                    postMessage: true,
+                    postMessageEvents: false,
+                    focusBodyOnPageVisibilityChange: true,
+                    width: 1280,
+                    height: 720,
+                    margin: 0.04,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    disableLayout: false,
+                    pdfSeparateFragments: false,
+                    plugins: [ RevealMarkdown, RevealNotes, RevealHighlight ]
+                });
+            });
+    </script>
+</body>
+</html>
