@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next Steps - Embryo-AI</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --card: #f8f9fa;
+        --text: #2d3a3f;
+        --muted: #6c757d;
+        --accent: #0ea5b6;
+        --accent2: #0b2533;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 8px 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        box-sizing: border-box;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        background: rgba(14, 165, 182, 0.1);
+        color: var(--accent);
+      }
+      .nav-links a.active {
+        background: var(--accent);
+        color: white;
+      }
+      body {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body class="stackedit">
+    <nav class="navbar">
+      <div style="display: flex; align-items: center; gap: 15px">
+        <img
+          src="assets/maru-logo.png"
+          alt="MaruOnline Logo"
+          style="width: 80px; height: auto"
+        />
+        <strong style="color: var(--accent2); text-transform: uppercase"
+          >Embryo-AI Audit Deck</strong
+        >
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="audit-summary.html">Summary</a></li>
+        <li><a href="client-responsibilities.html">Responsibilities</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="next-steps.html" class="active">Next Steps</a></li>
+      </ul>
+    </nav>
+    <div class="stackedit__html">
+      <h1 id="next-steps">Next Steps</h1>
+      <p>Two implementation options based on your priorities and timeline</p>
+
+      <h2 id="option-a-keep-it-light-next-3–5-days">Option A — Keep it light (next 3–5 days)</h2>
+      <p>Implement the quick fixes and provide an HTML export (or allow‑list) for verification.</p>
+
+      <h3 id="immediate-actions">Immediate Actions</h3>
+      <ul>
+        <li>Implement SSR/prerender for critical routes (Home, Services, Contact)</li>
+        <li>Add robots.txt and sitemap.xml</li>
+        <li>Deploy essential meta tags in initial HTML</li>
+        <li>Add security headers (HSTS, CSP, X-Content-Type-Options, X-Frame-Options)</li>
+        <li>Optimize LCP images and add fetchpriority="high"</li>
+        <li>Basic accessibility checks with axe and keyboard testing</li>
+        <li>Smoke-test contact forms and links</li>
+      </ul>
+
+      <h3 id="deliverables">Deliverables</h3>
+      <ul>
+        <li>Updated website with critical fixes</li>
+        <li>HTML export for verification</li>
+        <li>Basic performance improvements</li>
+        <li>Security headers implementation</li>
+        <li>Accessibility compliance report</li>
+      </ul>
+
+      <h2 id="option-b-thorough-audit-1–2-weeks">Option B — Thorough audit (1–2 weeks)</h2>
+      <p>Grant staged read‑only access (CMS/build logs, GA4/GSC, CDN). We'll deliver comprehensive analysis and prioritized fixes.</p>
+
+      <h3 id="comprehensive-analysis">Comprehensive Analysis</h3>
+      <ul>
+        <li>Lighthouse/axe reports with detailed scoring</li>
+        <li>Core Web Vitals trends and field data</li>
+        <li>Header & redirect mapping analysis</li>
+        <li>Dependency mapping and security audit</li>
+        <li>Performance optimization recommendations</li>
+      </ul>
+
+      <h3 id="deliverables-1">Deliverables</h3>
+      <ul>
+        <li>Prioritized fix backlog (CSV) ready for developers</li>
+        <li>Detailed performance analysis report</li>
+        <li>Security assessment and recommendations</li>
+        <li>Accessibility compliance audit</li>
+        <li>SEO optimization strategy</li>
+        <li>Implementation roadmap with timelines</li>
+      </ul>
+
+      <h2 id="technical-requirements">Technical Requirements</h2>
+      <h3 id="for-option-a">For Option A</h3>
+      <ul>
+        <li>Website hosting platform access (Lovable)</li>
+        <li>Domain & DNS management access</li>
+        <li>Content management system access</li>
+        <li>Basic server configuration permissions</li>
+      </ul>
+
+      <h3 id="for-option-b">For Option B</h3>
+      <ul>
+        <li>Staged read-only access to CMS/build logs</li>
+        <li>Google Analytics 4 (GA4) access</li>
+        <li>Google Search Console (GSC) access</li>
+        <li>CDN configuration access</li>
+        <li>Server logs and performance data</li>
+      </ul>
+
+      <h2 id="business-requirements">Business Requirements</h2>
+      <ul>
+        <li>Message template approval (if applicable)</li>
+        <li>Staff training schedule for new features</li>
+        <li>Success criteria definition and KPIs</li>
+        <li>Content approval workflow</li>
+        <li>Testing and QA sign-off process</li>
+      </ul>
+
+      <h2 id="contact--next-meeting">Contact & Next Meeting</h2>
+      <p><strong>Ready to discuss implementation details and answer any questions about the proposed solutions.</strong></p>
+      
+      <h3 id="suggested-next-meeting">Suggested Next Meeting</h3>
+      <ul>
+        <li>Technical discovery session</li>
+        <li>Requirements finalization</li>
+        <li>Timeline and resource planning</li>
+        <li>Implementation approach discussion</li>
+      </ul>
+
+      <h3 id="contact-information">Contact Information</h3>
+      <ul>
+        <li><strong>Prepared by:</strong> Jimmy Motsei, MaruOnline</li>
+        <li><strong>Date:</strong> 2025-09-21</li>
+        <li><strong>Scope:</strong> Public-facing, non-intrusive triage of embryo-ai.co.za</li>
+      </ul>
+    </div>
+  </body>
+</html>

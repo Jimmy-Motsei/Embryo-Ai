@@ -1,129 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embryo-AI Website Audit - MaruOnline</title>
-    
-    <!-- Reveal.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css">
-    
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Reveal.js Markdown plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.min.js"></script>
-</head>
-<body>
-    <div class="reveal">
-        <div class="slides" data-markdown>
-            <textarea data-template>
-                {{ slides }}
-            </textarea>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embryo-AI Website Audit – 12‑Slide Deck</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --card: #f8f9fa;
+        --text: #2d3a3f;
+        --muted: #6c757d;
+        --accent: #0ea5b6; /* MaruOnline teal */
+        --accent2: #0b2533; /* MaruOnline dark blue-grey */
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.5 "Outfit", system-ui, -apple-system, Segoe UI, Roboto,
+          Inter, Ubuntu, "Helvetica Neue", Arial;
+      }
+      .deck {
+        height: calc(100% - 50px);
+        display: grid;
+        grid-template-rows: 1fr 60px;
+      }
+      .slides {
+        height: calc(100% - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .slide {
+        width: min(1100px, 92vw);
+        height: min(640px, 78vh);
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: var(--shadow);
+        border-radius: 24px;
+        padding: 40px 48px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateX(40px) scale(0.98);
+        opacity: 0;
+        transition: opacity 0.35s ease,
+          transform 0.45s cubic-bezier(0.2, 0.7, 0.1, 1);
+        cursor: pointer;
+        pointer-events: auto;
+      }
+      .slide:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+      .slide.active {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(0) scale(1);
+        pointer-events: auto;
+      }
+      h1,
+      h2 {
+        margin: 0 0 0.4em;
+        font-family: "Outfit", sans-serif;
+      }
+      h1 {
+        font-size: clamp(28px, 3.6vw, 46px);
+        letter-spacing: 0.2px;
+        color: var(--accent2);
+      }
+      h2 {
+        font-size: clamp(22px, 2.5vw, 34px);
+        color: var(--accent);
+      }
+      p {
+        margin: 0.25em 0 0.6em;
+        color: var(--muted);
+      }
+      ul {
+        margin: 0.4em 0 0 1.1em;
+      }
+      li {
+        margin: 0.25em 0;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .cols-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tag {
+        display: inline-block;
+        padding: 0.25em 0.6em;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 999px;
+        font-size: 0.9em;
+        color: var(--accent2);
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        color: var(--muted);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        position: relative;
+        bottom: 0;
+      }
+      .prog {
+        height: 4px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+        flex: 1;
+        margin: 0 12px;
+      }
+      .bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        width: 0%;
+      }
+      .kbd {
+        display: inline-block;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background: #f1f3f5;
+        padding: 0.15em 0.45em;
+        border-radius: 6px;
+        margin: 0 0.1em;
+        color: var(--accent2);
+      }
+      .note {
+        font-size: 0.9em;
+        color: var(--muted);
+      }
+      .pill {
+        display: inline-block;
+        background: rgba(14, 165, 182, 0.1);
+        border: 1px solid rgba(14, 165, 182, 0.3);
+        padding: 0.35em 0.65em;
+        border-radius: 999px;
+        margin-right: 0.4em;
+        color: var(--accent);
+      }
+      .callout {
+        padding: 14px 16px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(14, 165, 182, 0.05);
+        border-radius: 14px;
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", monospace;
+      }
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .box {
+        background: rgba(14, 165, 182, 0.05);
+        border: 1px dashed rgba(14, 165, 182, 0.4);
+        border-radius: 12px;
+        padding: 10px;
+        text-align: center;
+        font-size: 0.95em;
+        color: var(--accent2);
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 8px 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        box-sizing: border-box;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        background: rgba(14, 165, 182, 0.1);
+        color: var(--accent);
+      }
+      .nav-links a.active {
+        background: var(--accent);
+        color: white;
+      }
+      .deck {
+        margin-top: 50px;
+      }
+      .logo {
+        width: 80px;
+        height: auto;
+      }
+      @media (max-width: 980px) {
+        .cols-2 {
+          grid-template-columns: 1fr;
+        }
+        .flow {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div style="display: flex; align-items: center; gap: 15px">
+        <img
+          src="assets/maru-logo.png"
+          alt="MaruOnline Logo"
+          class="logo"
+        />
+        <strong style="color: var(--accent2); text-transform: uppercase"
+          >Embryo-AI Audit Deck</strong
+        >
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Presentation</a></li>
+        <li><a href="audit-summary.html">Summary</a></li>
+        <li><a href="client-responsibilities.html">Responsibilities</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="next-steps.html">Next Steps</a></li>
+      </ul>
+    </nav>
+
+    <div class="deck">
+      <div class="slides" id="slides">
+        <!-- Slide 1: Title -->
+        <section class="slide active">
+          <h1>Top‑Line Website Audit — Embryo‑AI</h1>
+          <p class="note">
+            Website Audit Report • 12 slides • Prepared by MaruOnline
+          </p>
+          <div class="callout">
+            <span class="pill">Scope</span> Public-facing, non-intrusive triage of the live site at embryo-ai.co.za
+          </div>
+          <ul>
+            <li>Rendering & discoverability analysis</li>
+            <li>SEO surface evaluation</li>
+            <li>Performance & accessibility review</li>
+            <li>Security & trust assessment</li>
+          </ul>
+        </section>
+
+        <!-- Slide 2: Executive Summary -->
+        <section class="slide">
+          <h1>Executive Summary</h1>
+          <div class="cols-2">
+            <div>
+              <h2>Critical Issues</h2>
+              <ul>
+                <li>Empty HTML to non-JS clients</li>
+                <li>Poor discoverability for crawlers</li>
+                <li>Blank social link previews</li>
+                <li>Slow mobile performance</li>
+              </ul>
+            </div>
+            <div>
+              <h2>Priority Fixes</h2>
+              <ul>
+                <li>Implement SSR/prerender</li>
+                <li>Add robots.txt & sitemap.xml</li>
+                <li>Ship essential meta tags</li>
+                <li>Deploy security headers</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Timeline</span> Critical fixes needed within 3-5 days for optimal performance
+          </div>
+        </section>
+
+        <!-- Slide 3: What We Checked -->
+        <section class="slide">
+          <h1>What We Checked</h1>
+          <h2>Public-Only Scope</h2>
+          <div class="flow">
+            <div class="box">
+              <strong>Homepage Analysis</strong><br />
+              HTML structure & JS dependencies
+            </div>
+            <div class="box">
+              <strong>SEO Surface</strong><br />
+              robots.txt, sitemap, meta tags
+            </div>
+            <div class="box">
+              <strong>Performance</strong><br />
+              Core Web Vitals assumptions
+            </div>
+            <div class="box">
+              <strong>Accessibility</strong><br />
+              Headings, landmarks, semantics
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Note</span> No backend/CMS access used in this audit
+          </div>
+        </section>
+
+        <!-- Slide 4: Rendering & Discoverability -->
+        <section class="slide">
+          <h1>Rendering & Discoverability</h1>
+          <div class="cols-2">
+            <div>
+              <h2>Current State</h2>
+              <ul>
+                <li>Empty HTML response to non-JS fetchers</li>
+                <li>Client-side rendering without SSR</li>
+                <li>No prerender service active</li>
+                <li>Late paint and hydration</li>
+              </ul>
+            </div>
+            <div>
+              <h2>Impact</h2>
+              <ul>
+                <li>Search engines can't index content</li>
+                <li>Social sharing shows blank previews</li>
+                <li>Performance suffers on mobile</li>
+                <li>Poor user experience</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Solution</span> Implement SSR or prerender service at CDN/edge level
+          </div>
+        </section>
+
+        <!-- Slide 5: SEO Surface -->
+        <section class="slide">
+          <h1>SEO Surface</h1>
+          <div class="flow">
+            <div class="box">
+              <strong>robots.txt</strong><br />
+              Could not be confirmed
+            </div>
+            <div class="box">
+              <strong>sitemap.xml</strong><br />
+              Not publicly accessible
+            </div>
+            <div class="box">
+              <strong>Meta Tags</strong><br />
+              Not in initial HTML
+            </div>
+            <div class="box">
+              <strong>Structured Data</strong><br />
+              Not verifiable
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Impact</span> Missing files hinder discovery and timely indexing
+          </div>
+        </section>
+
+        <!-- Slide 6: Performance -->
+        <section class="slide">
+          <h1>Performance Analysis</h1>
+          <div class="cols-2">
+            <div>
+              <h2>Mobile-First Risks</h2>
+              <ul>
+                <li>Slow LCP/INP due to JS-only render</li>
+                <li>Large JavaScript bundles</li>
+                <li>Late hydration on slow connections</li>
+                <li>Variable bandwidth in South Africa</li>
+              </ul>
+            </div>
+            <div>
+              <h2>Optimization Needs</h2>
+              <ul>
+                <li>Hero/LCP media optimization</li>
+                <li>Critical CSS inline</li>
+                <li>JS bundle splitting</li>
+                <li>Font loading optimization</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Context</span> African mobile networks require optimized performance
+          </div>
+        </section>
+
+        <!-- Slide 7: Accessibility -->
+        <section class="slide">
+          <h1>Accessibility Review</h1>
+          <div class="flow">
+            <div class="box">
+              <strong>Semantic Structure</strong><br />
+              May not be available pre-render
+            </div>
+            <div class="box">
+              <strong>Headings Hierarchy</strong><br />
+              Ensure proper H1-H6 order
+            </div>
+            <div class="box">
+              <strong>Landmarks</strong><br />
+              ARIA labels & focus states
+            </div>
+            <div class="box">
+              <strong>Keyboard Nav</strong><br />
+              Test all interactive elements
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Action</span> Validate with axe and keyboard-only testing
+          </div>
+        </section>
+
+        <!-- Slide 8: Security & Trust -->
+        <section class="slide">
+          <h1>Security & Trust</h1>
+          <div class="cols-2">
+            <div>
+              <h2>Missing Headers</h2>
+              <ul>
+                <li>HSTS not observable</li>
+                <li>CSP not implemented</li>
+                <li>X-Content-Type-Options missing</li>
+                <li>X-Frame-Options not set</li>
+              </ul>
+            </div>
+            <div>
+              <h2>Platform Considerations</h2>
+              <ul>
+                <li>Lovable hosting requires strict policies</li>
+                <li>Third-party script hygiene needed</li>
+                <li>Form endpoint verification required</li>
+                <li>Version pinning recommended</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Priority</span> Deploy security headers to improve user trust
+          </div>
+        </section>
+
+        <!-- Slide 9: Recommendations - Rendering -->
+        <section class="slide">
+          <h1>Recommendations – Rendering & Content</h1>
+          <div class="flow">
+            <div class="box">
+              <strong>SSR/Prerender</strong><br />
+              Implement for critical routes
+            </div>
+            <div class="box">
+              <strong>Meta Tags</strong><br />
+              Title, description, canonical
+            </div>
+            <div class="box">
+              <strong>Open Graph</strong><br />
+              og:title, og:description, og:image
+            </div>
+            <div class="box">
+              <strong>JSON-LD</strong><br />
+              Organization & LocalBusiness
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Implementation</span> Add essential meta tags in initial HTML
+          </div>
+        </section>
+
+        <!-- Slide 10: Recommendations - Crawlability -->
+        <section class="slide">
+          <h1>Recommendations – Crawlability</h1>
+          <div class="cols-2">
+            <div>
+              <h2>Essential Files</h2>
+              <ul>
+                <li>Add /robots.txt with core routes</li>
+                <li>Publish /sitemap.xml covering key pages</li>
+                <li>Submit sitemap to Google Search Console</li>
+                <li>Verify internal linking structure</li>
+              </ul>
+            </div>
+            <div>
+              <h2>URL Structure</h2>
+              <ul>
+                <li>Use clean, descriptive URLs</li>
+                <li>Handle redirects properly</li>
+                <li>Ensure consistent navigation</li>
+                <li>Test all internal links</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill>GSC</span> Submit sitemap and monitor indexing status
+          </div>
+        </section>
+
+        <!-- Slide 11: Recommendations - Performance -->
+        <section class="slide">
+          <h1>Recommendations – Performance & Accessibility</h1>
+          <div class="flow">
+            <div class="box">
+              <strong>LCP Optimization</strong><br />
+              WebP/AVIF, correct dimensions
+            </div>
+            <div class="box">
+              <strong>Critical CSS</strong><br />
+              Inline essential, defer rest
+            </div>
+            <div class="box">
+              <strong>JS Splitting</strong><br />
+              Defer non-essential scripts
+            </div>
+            <div class="box">
+              <strong>Font Loading</strong><br />
+              font-display: swap
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Testing</span> Run axe audits and keyboard-only navigation tests
+          </div>
+        </section>
+
+        <!-- Slide 12: Next Steps -->
+        <section class="slide">
+          <h1>Next Steps</h1>
+          <div class="callout">
+            <span class="pill">Option A</span> Quick fixes (3-5 days): Implement SSR/prerender, add essential meta tags, deploy security headers
+          </div>
+          <div class="grid">
+            <div>
+              <h3>Immediate Actions</h3>
+              <ul>
+                <li>Implement SSR for critical routes</li>
+                <li>Add robots.txt and sitemap.xml</li>
+                <li>Deploy security headers</li>
+                <li>Optimize LCP images</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Deep Audit Option</h3>
+              <ul>
+                <li>Grant staged read-only access</li>
+                <li>Lighthouse/axe reports</li>
+                <li>Core Web Vitals trends</li>
+                <li>Prioritized fix backlog</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <span class="pill">Contact</span> Ready to discuss implementation details and provide technical support
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">
+        <div>
+          <button
+            onclick="prevSlide()"
+            style="
+              padding: 8px 16px;
+              background: #6c757d;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-right: 10px;
+            "
+          >
+            ← Previous
+          </button>
+          <button
+            onclick="nextSlide()"
+            style="
+              padding: 8px 16px;
+              background: #0ea5b6;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Next →
+          </button>
         </div>
+        <div class="prog"><div class="bar" id="bar"></div></div>
+        <div id="count">1 / 12</div>
+      </div>
     </div>
 
-    <!-- Reveal.js JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
     <script>
-        // Load slides from slides.md
-        fetch('slides.md')
-            .then(response => response.text())
-            .then(data => {
-                // Replace the placeholder with actual slides
-                document.querySelector('[data-template]').innerHTML = data;
-                
-                // Initialize Reveal.js
-                Reveal.initialize({
-                    hash: true,
-                    transition: 'slide',
-                    transitionSpeed: 'default',
-                    backgroundTransition: 'fade',
-                    controls: true,
-                    controlsTutorial: true,
-                    controlsLayout: 'bottom-right',
-                    controlsBackArrows: 'faded',
-                    progress: true,
-                    center: true,
-                    touch: true,
-                    loop: false,
-                    rtl: false,
-                    navigationMode: 'default',
-                    shuffle: false,
-                    fragments: true,
-                    fragmentInURL: false,
-                    embedded: false,
-                    help: true,
-                    showNotes: false,
-                    autoPlayMedia: null,
-                    preloadIframes: null,
-                    autoSlide: 0,
-                    autoSlideStoppable: true,
-                    autoSlideMethod: null,
-                    defaultTiming: null,
-                    mouseWheel: false,
-                    previewLinks: false,
-                    postMessage: true,
-                    postMessageEvents: false,
-                    focusBodyOnPageVisibilityChange: true,
-                    width: 1280,
-                    height: 720,
-                    margin: 0.04,
-                    minScale: 0.2,
-                    maxScale: 2.0,
-                    disableLayout: false,
-                    pdfSeparateFragments: false,
-                    plugins: [ RevealMarkdown, RevealNotes, RevealHighlight ]
-                });
-            })
-            .catch(error => {
-                console.error('Error loading slides:', error);
-                // Fallback: initialize with empty content
-                Reveal.initialize({
-                    hash: true,
-                    transition: 'slide',
-                    transitionSpeed: 'default',
-                    backgroundTransition: 'fade',
-                    controls: true,
-                    controlsTutorial: true,
-                    controlsLayout: 'bottom-right',
-                    controlsBackArrows: 'faded',
-                    progress: true,
-                    center: true,
-                    touch: true,
-                    loop: false,
-                    rtl: false,
-                    navigationMode: 'default',
-                    shuffle: false,
-                    fragments: true,
-                    fragmentInURL: false,
-                    embedded: false,
-                    help: true,
-                    showNotes: false,
-                    autoPlayMedia: null,
-                    preloadIframes: null,
-                    autoSlide: 0,
-                    autoSlideStoppable: true,
-                    autoSlideMethod: null,
-                    defaultTiming: null,
-                    mouseWheel: false,
-                    previewLinks: false,
-                    postMessage: true,
-                    postMessageEvents: false,
-                    focusBodyOnPageVisibilityChange: true,
-                    width: 1280,
-                    height: 720,
-                    margin: 0.04,
-                    minScale: 0.2,
-                    maxScale: 2.0,
-                    disableLayout: false,
-                    pdfSeparateFragments: false,
-                    plugins: [ RevealMarkdown, RevealNotes, RevealHighlight ]
-                });
-            });
+      // Wait for DOM to be ready
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM loaded, initializing presentation...");
+
+        const slides = Array.from(document.querySelectorAll(".slide"));
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        const bar = document.getElementById("bar");
+        const count = document.getElementById("count");
+
+        console.log("Found slides:", totalSlides);
+
+        function updateDisplay() {
+          // Hide all slides
+          slides.forEach((slide, index) => {
+            slide.classList.toggle("active", index === currentSlide);
+          });
+
+          // Update progress bar with animation
+          const progress = ((currentSlide + 1) / totalSlides) * 100;
+          bar.style.transition = "width 0.3s ease";
+          bar.style.width = progress + "%";
+
+          // Update counter
+          count.textContent = currentSlide + 1 + " / " + totalSlides;
+
+          console.log("Current slide:", currentSlide + 1, "of", totalSlides);
+        }
+
+        function nextSlide() {
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateDisplay();
+          }
+        }
+
+        function prevSlide() {
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateDisplay();
+          }
+        }
+
+        // Make functions globally accessible for buttons
+        window.nextSlide = nextSlide;
+        window.prevSlide = prevSlide;
+
+        // Keyboard navigation
+        document.addEventListener("keydown", function (e) {
+          console.log("Key pressed:", e.key, "Target:", e.target.tagName);
+
+          switch (e.key) {
+            case "ArrowRight":
+            case "Right":
+              e.preventDefault();
+              console.log("Right arrow - advancing slide");
+              nextSlide();
+              break;
+            case "ArrowLeft":
+            case "Left":
+              e.preventDefault();
+              console.log("Left arrow - going back slide");
+              prevSlide();
+              break;
+            case "f":
+            case "F":
+              e.preventDefault();
+              if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen?.();
+              } else {
+                document.exitFullscreen?.();
+              }
+              break;
+            case " ":
+            case "Space":
+              e.preventDefault();
+              console.log("Spacebar - advancing slide");
+              nextSlide();
+              break;
+          }
+        });
+
+        // Click to advance - simplified approach
+        const slidesContainer = document.getElementById("slides");
+
+        // Single click handler on slides container
+        slidesContainer.addEventListener("click", function (e) {
+          console.log(
+            "Click event on slides:",
+            e.target.tagName,
+            "Closest nav:",
+            e.target.closest("nav")
+          );
+
+          // Only advance if not clicking on navigation elements
+          if (
+            !e.target.closest("nav") &&
+            !e.target.closest(".navbar") &&
+            !e.target.closest("a") &&
+            !e.target.closest("button")
+          ) {
+            console.log("Advancing to next slide");
+            nextSlide();
+          } else {
+            console.log("Click blocked - navigation element clicked");
+          }
+        });
+
+        // Hash navigation
+        function handleHashChange() {
+          const hash = location.hash.replace("#", "");
+          const slideNumber = parseInt(hash, 10);
+          if (
+            !isNaN(slideNumber) &&
+            slideNumber >= 1 &&
+            slideNumber <= totalSlides
+          ) {
+            currentSlide = slideNumber - 1;
+            updateDisplay();
+          }
+        }
+
+        window.addEventListener("hashchange", handleHashChange);
+
+        // Initialize
+        handleHashChange();
+        updateDisplay();
+
+        // Ensure focus for keyboard events
+        document.body.tabIndex = -1;
+        document.body.focus();
+
+        console.log("Presentation initialized successfully");
+        console.log("Total slides found:", totalSlides);
+        console.log("Current slide index:", currentSlide);
+
+        // Test if functions are working
+        console.log("Testing nextSlide function:", typeof window.nextSlide);
+        console.log("Testing prevSlide function:", typeof window.prevSlide);
+
+        // Add error handling
+        window.addEventListener("error", function (e) {
+          console.error("JavaScript error:", e.error);
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

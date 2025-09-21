@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendations - Embryo-AI</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --card: #f8f9fa;
+        --text: #2d3a3f;
+        --muted: #6c757d;
+        --accent: #0ea5b6;
+        --accent2: #0b2533;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 8px 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        box-sizing: border-box;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        background: rgba(14, 165, 182, 0.1);
+        color: var(--accent);
+      }
+      .nav-links a.active {
+        background: var(--accent);
+        color: white;
+      }
+      body {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body class="stackedit">
+    <nav class="navbar">
+      <div style="display: flex; align-items: center; gap: 15px">
+        <img
+          src="assets/maru-logo.png"
+          alt="MaruOnline Logo"
+          style="width: 80px; height: auto"
+        />
+        <strong style="color: var(--accent2); text-transform: uppercase"
+          >Embryo-AI Audit Deck</strong
+        >
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="audit-summary.html">Summary</a></li>
+        <li><a href="client-responsibilities.html">Responsibilities</a></li>
+        <li><a href="recommendations.html" class="active">Recommendations</a></li>
+        <li><a href="next-steps.html">Next Steps</a></li>
+      </ul>
+    </nav>
+    <div class="stackedit__html">
+      <h1 id="recommendations">Recommendations</h1>
+      <p>Actionable recommendations based on the website audit findings for embryo-ai.co.za</p>
+
+      <h2 id="rendering--content">Rendering & Content</h2>
+      <h3 id="server-side-rendering">Server-Side Rendering</h3>
+      <ul>
+        <li>Adopt <strong>SSR or prerender</strong> on critical routes (Home, Services, Contact)</li>
+        <li>If staying SPA-only, integrate a prerender service at the CDN/edge</li>
+        <li>Ensure the <strong>initial HTML</strong> includes essential meta tags</li>
+      </ul>
+
+      <h3 id="essential-meta-tags">Essential Meta Tags</h3>
+      <ul>
+        <li><code>&lt;title&gt;</code>, <code>&lt;meta name="description"&gt;</code>, <code>&lt;link rel="canonical"&gt;</code></li>
+        <li>Open Graph (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:url</code>)</li>
+        <li>Twitter cards for social media sharing</li>
+        <li>JSON‑LD for Organization (and Services/LocalBusiness if applicable)</li>
+      </ul>
+
+      <h2 id="crawlability">Crawlability</h2>
+      <h3 id="essential-files">Essential Files</h3>
+      <ul>
+        <li>Add <strong>/robots.txt</strong> that <em>allows</em> core routes and references the sitemap</li>
+        <li>Publish <strong>/sitemap.xml</strong> covering all key pages</li>
+        <li>Submit sitemap in Google Search Console (GSC)</li>
+        <li>Verify internal linking structure and navigation</li>
+      </ul>
+
+      <h2 id="performance-mobile-first-in-sa">Performance (Mobile‑first in SA)</h2>
+      <h3 id="image-optimization">Image Optimization</h3>
+      <ul>
+        <li>Optimize <strong>hero/LCP media</strong>: modern formats (WebP/AVIF)</li>
+        <li>Correct intrinsic dimensions and aspect ratios</li>
+        <li>Preload or <code>fetchpriority="high"</code> for the LCP image</li>
+      </ul>
+
+      <h3 id="css-and-javascript">CSS and JavaScript</h3>
+      <ul>
+        <li>Ship <strong>critical CSS inline</strong> and defer non‑critical styles</li>
+        <li>Split JS bundles and defer non‑essential scripts</li>
+        <li>Cache headers via CDN; set long‑TTL with cache‑busting for immutable assets</li>
+        <li>Avoid blocking fonts; use <code>font-display: swap</code> and limit variants</li>
+      </ul>
+
+      <h2 id="accessibility">Accessibility</h2>
+      <ul>
+        <li>Validate with <strong>axe</strong> and keyboard‑only testing</li>
+        <li>Ensure logical heading hierarchy (H1-H6)</li>
+        <li>Provide proper ARIA labels for controls and landmarks</li>
+        <li>Ensure visible focus states and sufficient color contrast</li>
+        <li>Provide text alternatives for images</li>
+        <li>Ensure menu/components are operable without a mouse</li>
+      </ul>
+
+      <h2 id="security">Security</h2>
+      <h3 id="http-security-headers">HTTP Security Headers</h3>
+      <ul>
+        <li>Add / verify headers: <strong>HSTS</strong>, <strong>CSP</strong> (start with report‑only then enforce)</li>
+        <li><strong>X‑Content‑Type‑Options</strong>, <strong>X‑Frame‑Options</strong></li>
+        <li><strong>Referrer‑Policy</strong>, and <strong>Permissions‑Policy</strong></li>
+      </ul>
+
+      <h3 id="platform-security">Platform Security</h3>
+      <ul>
+        <li>Verify forms go to <strong>HTTPS endpoints</strong></li>
+        <li>Minimize and integrity‑check third‑party scripts</li>
+        <li>Apply strict content policies for Lovable platform</li>
+        <li>Version-pin all external dependencies</li>
+      </ul>
+
+      <h2 id="quick-triage-checklist">Quick Triage Checklist</h2>
+      <ul>
+        <li>[ ] SSR/prerender for Home, Services, Contact</li>
+        <li>[ ] robots.txt present and references sitemap</li>
+        <li>[ ] sitemap.xml valid and submitted to GSC</li>
+        <li>[ ] Title + Description + Canonical + OG/Twitter in initial HTML</li>
+        <li>[ ] LCP image optimized and prioritized</li>
+        <li>[ ] Basic accessibility checks pass (axe / keyboard)</li>
+        <li>[ ] Security headers deployed at the edge/origin</li>
+        <li>[ ] Forms & links smoke‑tested (tel:, mailto:, WhatsApp)</li>
+      </ul>
+    </div>
+  </body>
+</html>

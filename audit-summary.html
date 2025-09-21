@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audit Summary - Embryo-AI</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --card: #f8f9fa;
+        --text: #2d3a3f;
+        --muted: #6c757d;
+        --accent: #0ea5b6;
+        --accent2: #0b2533;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 8px 20px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        box-sizing: border-box;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-links a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        background: rgba(14, 165, 182, 0.1);
+        color: var(--accent);
+      }
+      .nav-links a.active {
+        background: var(--accent);
+        color: white;
+      }
+      body {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body class="stackedit">
+    <nav class="navbar">
+      <div style="display: flex; align-items: center; gap: 15px">
+        <img
+          src="assets/maru-logo.png"
+          alt="MaruOnline Logo"
+          style="width: 80px; height: auto"
+        />
+        <strong style="color: var(--accent2); text-transform: uppercase"
+          >Embryo-AI Audit Deck</strong
+        >
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Presentation</a></li>
+        <li><a href="audit-summary.html" class="active">Summary</a></li>
+        <li><a href="client-responsibilities.html">Responsibilities</a></li>
+        <li><a href="recommendations.html">Recommendations</a></li>
+        <li><a href="next-steps.html">Next Steps</a></li>
+      </ul>
+    </nav>
+    <div class="stackedit__html">
+      <h1 id="audit-summary">Audit Summary</h1>
+      <p><strong>Website:</strong> embryo-ai.co.za</p>
+      <p><strong>Audit Date:</strong> 2025-09-21</p>
+      <p><strong>Prepared by:</strong> Jimmy Motsei, MaruOnline</p>
+      <p><strong>Scope:</strong> Public-facing, non-intrusive triage of the live site</p>
+
+      <h2 id="executive-summary">Executive Summary</h2>
+      <p>The new site is live and reachable at <strong>https://www.embryo-ai.co.za/</strong>. The homepage appears to return an <strong>empty HTML document to non‑JavaScript clients</strong> (likely a JS‑rendered SPA or bot-blocking). This can impact discoverability (basic crawlers/social link previews), and may delay first content on slower mobile networks—common across South Africa.</p>
+
+      <h3 id="priority-fixes-next-3–5-days">Priority Fixes (next 3–5 days):</h3>
+      <ul>
+        <li>Ensure server‑rendered HTML (SSR) or <strong>prerender</strong> for core routes (Home, Services, Contact).</li>
+        <li>Verify <strong>robots.txt</strong> and <strong>sitemap.xml</strong> are present and correct.</li>
+        <li>Ship <strong>essential meta</strong> in initial HTML (title, meta description, canonical, Open Graph/Twitter).</li>
+        <li>Add/verify <strong>security headers</strong> (HSTS, CSP, X‑Content‑Type‑Options, X‑Frame‑Options, Referrer‑Policy).</li>
+        <li>Smoke‑test <strong>contact flows</strong> (forms, tel:, mailto:, WhatsApp).</li>
+      </ul>
+
+      <h2 id="what-we-checked-public-only">What We Checked (public-only)</h2>
+      <ul>
+        <li>Homepage fetch, basic HTML presence, and rendering risk indicators.</li>
+        <li>High‑level SEO surface: robots/sitemap conventions, meta expectations, structured data posture (not validated yet).</li>
+        <li>Performance posture assumptions for African mobile networks (LCP/INP risks with JS‑only render).</li>
+        <li>Accessibility surface (headings/landmarks/meta expectations).</li>
+        <li>Security headers posture (assumed defaults; cannot confirm without headers/logs).</li>
+      </ul>
+
+      <h2 id="key-findings">Key Findings</h2>
+      <h3 id="rendering--discoverability">Rendering / Discoverability</h3>
+      <ul>
+        <li><strong>Homepage HTML returns empty to non‑JS fetchers</strong>, indicating client‑side render without SSR/prerender.</li>
+        <li><em>Impact:</em> Some crawlers and social bots won't see content/metadata; previews may be blank; performance may suffer due to late paint/hydration.</li>
+      </ul>
+
+      <h3 id="seo-surface">SEO Surface</h3>
+      <ul>
+        <li><strong>robots.txt / sitemap.xml</strong>: Could not be confirmed publicly in this pass.</li>
+        <li><em>Impact:</em> Missing or incorrect files hinder discovery and timely indexing, especially for a new launch.</li>
+        <li><strong>Meta in initial HTML</strong>: Not verifiable from a non‑rendered response.</li>
+        <li><em>Impact:</em> Titles/descriptions/OG cards may not appear on shares; ranking snippets may be sub‑optimal.</li>
+      </ul>
+
+      <h3 id="performance-core-web-vitals-posture">Performance (Core Web Vitals posture)</h3>
+      <ul>
+        <li><strong>Risk of slow LCP/INP on mobile</strong> due to JS‑only render, large bundles, and late hydration (typical for SPA defaults).</li>
+        <li><em>Africa context:</em> Variable bandwidth and higher RTTs amplify these costs; prioritize critical CSS/HTML and progressive rendering.</li>
+      </ul>
+
+      <h3 id="accessibility">Accessibility</h3>
+      <ul>
+        <li>Without SSR, <strong>semantics and landmarks</strong> may not be available to basic agents pre‑render. Ensure proper headings order, aria‑labels, focus states, and keyboard operability in the shipped HTML.</li>
+      </ul>
+
+      <h3 id="security--trust">Security & Trust</h3>
+      <ul>
+        <li><strong>HTTP security headers</strong> (HSTS, CSP, etc.) not observable in this pass; small sites frequently omit these by default.</li>
+        <li><em>Platform note (Lovable):</em> As with any hosted builder, apply strict content policies and link hygiene. Ensure any third‑party scripts and form endpoints are trusted and version‑pinned.</li>
+      </ul>
+    </div>
+  </body>
+</html>
