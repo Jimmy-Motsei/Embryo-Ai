@@ -1,5 +1,7 @@
 # Top‑Line Website Audit — Embryo‑AI
 
+![MaruOnline Logo](assets/maru-logo.png)
+
 **Prepared for:** Embryo-Ai  
 **Prepared by:** Jimmy Motsei  
 **Date:** 2025-09-21

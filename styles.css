@@ -1,16 +1,23 @@
-/* MaruOnline Brand Colors */
+/* MaruOnline Brand Colors from maru-briefing-forms */
 :root {
-    --maru-heading: #4A5A63;  /* Slate grey for H1/headings */
-    --maru-accent: #78B2BE;    /* Teal for accents/links */
-    --maru-text: #333333;      /* Dark grey for body text */
-    --maru-light: #F8F9FA;     /* Light background */
-    --maru-border: #E9ECEF;    /* Light border */
+    --brand-primary: #0ea5b6;  /* Teal from logo */
+    --brand-dark: #37474f;     /* Dark grey for headings */
+    --brand-light: #f6f9fb;    /* Light background */
+    --accent: #1f2937;         /* Dark accent */
+    --radius: 16px;            /* Border radius */
+    --maru-heading: #0b2533;   /* Dark blue-grey for H1/headings */
+    --maru-accent: #0ea5b6;    /* Teal for accents/links */
+    --maru-text: #111827;      /* Dark grey for body text */
+    --maru-light: #f6f9fb;     /* Light background */
+    --maru-border: #e5e7eb;    /* Light border */
 }
 
 /* Override Reveal.js theme */
 .reveal {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.45;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+    line-height: 1.6;
+    color: var(--maru-text);
+    background: var(--maru-light);
 }
 
 /* Headings */
@@ -21,7 +28,7 @@
 .reveal h5,
 .reveal h6 {
     color: var(--maru-heading);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: none;
     line-height: 1.2;
     margin-bottom: 0.5em;
@@ -38,6 +45,7 @@
     border-bottom: 2px solid var(--maru-accent);
     padding-bottom: 0.2em;
     margin-bottom: 0.8em;
+    line-height: 1.4;
 }
 
 .reveal h3 {
@@ -63,12 +71,19 @@
 .reveal ul li,
 .reveal ol li {
     color: var(--maru-text);
-    margin-bottom: 0.4em;
-    line-height: 1.4;
+    margin-bottom: 0.6em;
+    line-height: 1.6;
+    font-size: 0.95em;
 }
 
 .reveal ul li::marker {
     color: var(--maru-accent);
+    font-weight: 600;
+}
+
+.reveal ul {
+    margin: 1em 0;
+    padding-left: 1.2em;
 }
 
 /* Strong text */
@@ -97,11 +112,25 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0 2em;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(2, 8, 23, 0.06);
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 /* Title slide */
 .reveal .slides section:first-child {
     text-align: center;
+    padding: 2em;
+}
+
+.reveal .slides section:first-child img {
+    height: 120px;
+    margin-bottom: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .reveal .slides section:first-child h1 {
