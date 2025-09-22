@@ -36,10 +36,13 @@
         overflow: hidden;
         position: relative;
         cursor: pointer;
+        padding-top: 40px; /* Ensure 40px spacing from navbar to slide content */
+        box-sizing: border-box;
       }
       .slide {
         width: min(1100px, 92vw);
-        height: min(640px, 78vh);
+        /* Fit slide + controls comfortably in the viewport: 100vh - navbar(50px) - footer(60px) - top gap(40px) */
+        height: min(640px, calc(100vh - 150px));
         background: #fff;
         border: 1px solid rgba(0, 0, 0, 0.08);
         box-shadow: var(--shadow);
